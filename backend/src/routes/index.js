@@ -1,7 +1,9 @@
 const router = require("express").Router();
 
-const serviceController = require("./services");
+const serviceRouter = require("./services");
+const partyRouter = require("./parties");
 
-router.use("/services", serviceController);
+router.use("/services", serviceRouter);
+router.use("/parties", partyRouter);
 
 module.exports = router;
