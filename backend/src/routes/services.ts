@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const serviceController = require("../controllers/serviceController");
+import { Router } from "express";
+import serviceController from "../controllers/serviceController";
+
+const router = Router();
 
 router.route("/").post(serviceController.create);
 router.route("/").get(serviceController.getAll);
@@ -7,4 +9,4 @@ router.route("/:id").get(serviceController.get);
 router.route("/:id").delete(serviceController.delete);
 router.route("/:id").put(serviceController.update);
 
-module.exports = router;
+export default router;

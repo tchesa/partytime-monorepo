@@ -1,9 +1,16 @@
-const mongoose = require("mongoose");
-const { serviceSchema } = require("./Service");
+import { Schema, model } from "mongoose";
+import { serviceSchema, type Service } from "./Service";
 
-const { Schema } = mongoose;
+export type Party = {
+  title: string;
+  author: string;
+  description: string;
+  budget: number;
+  image: string;
+  services?: Service[];
+};
 
-const partySchema = new Schema(
+export const partySchema = new Schema(
   {
     title: {
       type: String,
@@ -32,9 +39,6 @@ const partySchema = new Schema(
   { timestamps: true }
 );
 
-const Party = mongoose.model("Party", partySchema);
+const partyModel = model("Party", partySchema);
 
-module.exports = {
-  Party,
-  partySchema,
-};
+export default partyModel;

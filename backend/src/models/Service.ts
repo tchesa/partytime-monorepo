@@ -1,8 +1,13 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const { Schema } = mongoose;
+export type Service = {
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+};
 
-const serviceSchema = new Schema(
+export const serviceSchema = new Schema<Service>(
   {
     name: {
       type: String,
@@ -24,9 +29,6 @@ const serviceSchema = new Schema(
   { timestamps: true }
 );
 
-const Service = mongoose.model("Service", serviceSchema);
+const ServiceModel = model("Service", serviceSchema);
 
-module.exports = {
-  Service,
-  serviceSchema,
-};
+export default ServiceModel;

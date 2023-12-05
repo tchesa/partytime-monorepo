@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 async function main() {
   try {
@@ -9,4 +9,4 @@ async function main() {
   }
 }
 
-module.exports = main;
+export default main;

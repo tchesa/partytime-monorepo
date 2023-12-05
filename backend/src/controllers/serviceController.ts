@@ -1,7 +1,8 @@
-const { Service: ServiceModel } = require("../models/Service");
+import { Request, Response } from "express";
+import ServiceModel from "../models/Service";
 
 const serviceController = {
-  create: async (req, res) => {
+  create: async (req: Request, res: Response) => {
     try {
       const { name, description, price, image } = req.body;
 
@@ -14,7 +15,7 @@ const serviceController = {
       res.status(500).json(error);
     }
   },
-  getAll: async (_, res) => {
+  getAll: async (_: Request, res: Response) => {
     try {
       const services = await ServiceModel.find();
       res.json(services);
@@ -22,7 +23,7 @@ const serviceController = {
       return res.status(500).json(error);
     }
   },
-  get: async (req, res) => {
+  get: async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const service = await ServiceModel.findById(id);
@@ -34,7 +35,7 @@ const serviceController = {
       return res.status(500).json(error);
     }
   },
-  delete: async (req, res) => {
+  delete: async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const service = await ServiceModel.findById(id);
@@ -49,7 +50,7 @@ const serviceController = {
       res.status(500).json(error);
     }
   },
-  update: async (req, res) => {
+  update: async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
 
@@ -76,4 +77,4 @@ const serviceController = {
   },
 };
 
-module.exports = serviceController;
+export default serviceController;

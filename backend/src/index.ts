@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const connect = require("./db/conn");
-const routes = require("./routes");
+import express from "express";
+import cors from "cors";
+import connect from "./db/conn";
+import routes from "./routes";
 
 const app = express();
 

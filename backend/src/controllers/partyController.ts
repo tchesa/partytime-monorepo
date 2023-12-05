@@ -1,11 +1,13 @@
-const { Party: PartyModel } = require("../models/Party");
+import { Request, Response } from "express";
+import PartyModel from "../models/Party";
+import { Service } from "../models/Service";
 
-const checkPartyBudget = (budget, services) => {
+const checkPartyBudget = (budget: number, services: Service[]) => {
   return budget >= services.reduce((sum, service) => sum + service.price, 0);
 };
 
 const partyController = {
-  create: async (req, res) => {
+  create: async (req: Request, res: Response) => {
     const { title, author, description, budget, image, services } = req.body;
 
     try {
@@ -27,7 +29,7 @@ const partyController = {
       return res.status(500).json(error);
     }
   },
-  getAll: async (_, res) => {
+  getAll: async (_: Request, res: Response) => {
     try {
       const response = await PartyModel.find();
       return res.json(response);
@@ -35,7 +37,7 @@ const partyController = {
       return res.status(500).json(error);
     }
   },
-  get: async (req, res) => {
+  get: async (req: Request, res: Response) => {
     try {
       const party = await PartyModel.findById(req.params.id);
 
@@ -48,7 +50,7 @@ const partyController = {
       return res.status(500).json(error);
     }
   },
-  delete: async (req, res) => {
+  delete: async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const party = await PartyModel.findById(id);
@@ -63,7 +65,7 @@ const partyController = {
       res.status(500).json(error);
     }
   },
-  update: async (req, res) => {
+  update: async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const party = await PartyModel.findById(id);
@@ -103,4 +105,4 @@ const partyController = {
   },
 };
 
-module.exports = partyController;
+export default partyController;
