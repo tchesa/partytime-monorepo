@@ -10,7 +10,7 @@ export type Party = {
   services?: Service[];
 };
 
-export const partySchema = new Schema(
+export const partySchema = new Schema<Party>(
   {
     title: {
       type: String,
